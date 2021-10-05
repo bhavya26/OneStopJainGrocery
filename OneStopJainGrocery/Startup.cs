@@ -35,6 +35,16 @@ namespace OneStopJainGrocery
                 //options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    );
+            });
+
             services.AddDbContext<bhavya26_jaingroceryContext>(options =>
             options.UseSqlServer(
         Configuration.GetConnectionString("DefaultConnection")));
@@ -62,6 +72,8 @@ namespace OneStopJainGrocery
             }
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
+
 
             app.UseEndpoints(endpoints =>
             {

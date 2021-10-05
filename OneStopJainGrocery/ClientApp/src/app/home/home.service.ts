@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 import { Grocery } from "./grocery";
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Grocery } from "./grocery";
 })
 export class HomeService{
 
-    @Inject('BASE_URL') baseUrl: string =document.getElementsByTagName('base')[0].href;
+     baseUrl: string = environment.base_url;
     constructor(private http: HttpClient) {
 
      }

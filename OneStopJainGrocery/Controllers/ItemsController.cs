@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OneStopJainGrocery.Models;
+using OneStopJainGrocery.Models_Combined;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,28 @@ namespace OneStopJainGrocery.Controllers
 
         [HttpGet]
         // GET: ItemsController
-        public IEnumerable<GroceryItem> Index()
+        public List<grocery_main> Index()
         {
-            return _context.GroceryItems.ToList();
+
+            var query = (from grocery in _context.GroceryItems
+                         join categories in _context.Categories
+                         on grocery.Categories equals categories.Id
+                         join country in _context.Countries
+                         on grocery.Country equals country.Id
+                         join diet in _context.Diets
+                         on grocery.DietType equals diet.Id
+                         select new grocery_main()
+                         {
+                            Id= grocery.Id,
+                            Country= country.Countryname,
+                            DietType= diet.DietType,
+                            Productimage = grocery.Productimage,
+                            Productname= grocery.Productname,
+                            Producturl= grocery.Producturl,
+                            Categories= categories.Categories
+                         }).ToList();
+
+            return query;
         }
 
         // GET: ItemsController/Details/5
