@@ -14,9 +14,24 @@ export class HomeComponent implements OnInit {
   
   constructor(private homeService: HomeService) { }
   public groceryList : Grocery[] = [];
+  public size: number = 0;
+  public pageEvent: any | undefined;
   ngOnInit() {
     
-    this.homeService.getAllItems().subscribe(
+    this.getItemList(0);
+   
+  }
+
+  onPaginateChange(event: any){
+    console.log(event);
+
+    this.getItemList(event.pageIndex);
+
+  }
+
+  getItemList(pageIndex: number){
+
+    this.homeService.getAllItems(pageIndex).subscribe(
       response => {
         
         this.groceryList = response;
@@ -26,7 +41,7 @@ export class HomeComponent implements OnInit {
       error => {
         console.log(error);
       });
-   
+
   }
 
 

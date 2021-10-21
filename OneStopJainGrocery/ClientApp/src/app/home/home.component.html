@@ -1,7 +1,14 @@
 <div >
+  <div fxLayout="row" fxLayoutAlign="end center" class="listContainer">
+    <mat-paginator [length]="groceryList[0]?.totalSize"
+              [pageSize]="10"
+              aria-label="Select page"
+              (page)="pageEvent = $event; onPaginateChange($event)">
+</mat-paginator>
+ </div> 
 <div fxLayout="row wrap" fxLayoutGap="16px grid" class="listContainer">
     <div *ngFor="let grocery of groceryList" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" >
-       
+       <a href={{grocery.producturl}} target="_blank">
         <mat-card class="example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
@@ -21,7 +28,15 @@
               <button mat-button>SHARE</button>
             </mat-card-actions> -->
           </mat-card>
-
+        </a>
     </div>
+
 </div>
+<div fxLayout="row" fxLayoutAlign="end center" class="listContainer">
+  <mat-paginator [length]="groceryList[0]?.totalSize"
+            [pageSize]="10"
+            aria-label="Select page"
+            (page)="pageEvent = $event; onPaginateChange($event)">
+</mat-paginator>
+</div> 
 </div>

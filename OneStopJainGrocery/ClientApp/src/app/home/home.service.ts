@@ -13,9 +13,9 @@ export class HomeService{
 
      }
 
-     getAllItems(){
+     getAllItems(pageIndex: number){
 
-        return this.http.get<Grocery[]>(this.baseUrl + 'items');
+        return this.http.get<Grocery[]>(this.baseUrl + 'items?pageIndex='+ pageIndex);
 
      }
 

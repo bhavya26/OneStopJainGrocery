@@ -14,5 +14,7 @@ namespace OneStopJainGrocery.Models_Combined
         public string Categories { get; set; }
         public string DietType { get; set; }
         public string Country { get; set; }
+
+        public int totalSize { get; set; }
     }
 }

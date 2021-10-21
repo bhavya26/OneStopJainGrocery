@@ -21,9 +21,9 @@ namespace OneStopJainGrocery.Controllers
 
         [HttpGet]
         // GET: ItemsController
-        public List<grocery_main> Index()
+        public List<grocery_main> Index([FromQuery] int pageIndex)
         {
-
+            
             var query = (from grocery in _context.GroceryItems
                          join categories in _context.Categories
                          on grocery.Categories equals categories.Id
@@ -39,11 +39,13 @@ namespace OneStopJainGrocery.Controllers
                             Productimage = grocery.Productimage,
                             Productname= grocery.Productname,
                             Producturl= grocery.Producturl,
-                            Categories= categories.Categories
-                         }).ToList();
+                            Categories= categories.Categories,
+                            totalSize = _context.GroceryItems.Count()
+                         }).Skip(pageIndex*10).Take(10).ToList();
 
             return query;
         }
+
 
         // GET: ItemsController/Details/5
         public ActionResult Details(int id)

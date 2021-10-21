@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MatListModule } from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     FlexLayoutModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
