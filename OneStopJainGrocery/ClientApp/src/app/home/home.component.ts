@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   public groceryList : Grocery[] = [];
   public size: number = 0;
   public pageEvent: any | undefined;
+  public showGrid: boolean = false;
   ngOnInit() {
     
     this.getItemList(0);
@@ -29,13 +30,22 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getItemList(pageIndex: number){
+  getItemList(pageIndex: number) {
+
+    this.showGrid = false;
 
     this.homeService.getAllItems(pageIndex).subscribe(
       response => {
-        
-        this.groceryList = response;
-        console.log(this.groceryList);
+        setTimeout(() => {
+          this.groceryList = response;
+          console.log(this.groceryList);
+          if(response){
+            this.showGrid=true;
+            console.log(this.showGrid);
+          }
+        }, 500);
+     
+       
       
       },
       error => {
